@@ -48,13 +48,13 @@ class DoublyTaskList {
     }
 
     String showTasks() {
-        StringBuilder sb = new StringBuilder("📋 Your Tasks:\n\n");
+        StringBuilder sb = new StringBuilder("Your Tasks:\n\n");
         TaskNode temp = head;
         if (temp == null) {
-            return "✨ No tasks available.\n";
+            return "No tasks available.\n";
         }
         while (temp != null) {
-            sb.append("📝 ").append(temp.taskName)
+            sb.append("").append(temp.taskName)
               .append("   |   Priority: ").append(temp.priority).append("\n");
             temp = temp.next;
         }
@@ -69,12 +69,12 @@ public class Akhila extends JFrame {
     private JTextField taskField, priorityField, deleteField;
 
     public Akhila() {
-        setTitle("🌟 Task Management System 🌟");
+        setTitle("Task Management System ");
         setSize(650, 500);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
 
-        // 🎨 Gradient Background (Custom Panel)
+        //  Gradient Background (Custom Panel)
         JPanel gradientPanel = new JPanel() {
             @Override
             protected void paintComponent(Graphics g) {
@@ -132,7 +132,7 @@ public class Akhila extends JFrame {
 
         deleteField = new JTextField(12);
 
-        JButton deleteButton = new JButton("🗑 Delete Task");
+        JButton deleteButton = new JButton(" Delete Task");
         deleteButton.setBackground(new Color(220, 20, 60)); // Crimson
         deleteButton.setForeground(Color.WHITE);
         deleteButton.setFocusPainted(false);
@@ -175,7 +175,7 @@ public class Akhila extends JFrame {
             }
         });
 
-        // 📌 Add some default tasks
+        //  Add some default tasks
         taskList.addTask("Prepare Report", 1);
         taskList.addTask("Check Emails", 2);
         taskList.addTask("Team Meeting", 3);
@@ -186,7 +186,7 @@ public class Akhila extends JFrame {
         taskArea.setText(taskList.showTasks());
     }
 
-    // ✅ Correct main method
+    //  Correct main method
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
             new Akhila().setVisible(true);
