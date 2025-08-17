@@ -1,7 +1,5 @@
 # TaskManagementSystem.
 //This program is about javaGUI through VScode.
-
-
 import javax.swing.*;
 import java.awt.*;
 
@@ -50,13 +48,13 @@ class DoublyTaskList {
     }
 
     String showTasks() {
-        StringBuilder sb = new StringBuilder();
+        StringBuilder sb = new StringBuilder("📋 Your Tasks:\n\n");
         TaskNode temp = head;
         if (temp == null) {
             return "✨ No tasks available.\n";
         }
         while (temp != null) {
-            sb.append("📝 Task: ").append(temp.taskName)
+            sb.append("📝 ").append(temp.taskName)
               .append("   |   Priority: ").append(temp.priority).append("\n");
             temp = temp.next;
         }
@@ -65,23 +63,36 @@ class DoublyTaskList {
 }
 
 // GUI Class
-public class AkhilaMenu extends JFrame {
+public class Akhila extends JFrame {
     private DoublyTaskList taskList = new DoublyTaskList();
     private JTextArea taskArea;
     private JTextField taskField, priorityField, deleteField;
 
-    public AkhilaMenu() {
+    public Akhila() {
         setTitle("🌟 Task Management System 🌟");
-        setSize(600, 450);
+        setSize(650, 500);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
 
-        // 🎨 Main background
-        getContentPane().setBackground(new Color(245, 245, 255));
+        // 🎨 Gradient Background (Custom Panel)
+        JPanel gradientPanel = new JPanel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                Graphics2D g2d = (Graphics2D) g;
+                Color color1 = new Color(135, 206, 250); // Sky blue
+                Color color2 = new Color(255, 182, 193); // Pink
+                GradientPaint gp = new GradientPaint(0, 0, color1, 0, getHeight(), color2);
+                g2d.setPaint(gp);
+                g2d.fillRect(0, 0, getWidth(), getHeight());
+            }
+        };
+        gradientPanel.setLayout(new BorderLayout());
+        setContentPane(gradientPanel);
 
         // --- Top Panel (Add task) ---
         JPanel topPanel = new JPanel(new FlowLayout());
-        topPanel.setBackground(new Color(200, 220, 255));
+        topPanel.setBackground(new Color(255, 239, 213)); // Light Peach
 
         JLabel lblTask = new JLabel("Task:");
         lblTask.setFont(new Font("Arial", Font.BOLD, 14));
@@ -92,7 +103,7 @@ public class AkhilaMenu extends JFrame {
         priorityField = new JTextField(4);
 
         JButton addButton = new JButton("➕ Add Task");
-        addButton.setBackground(new Color(50, 205, 50));
+        addButton.setBackground(new Color(60, 179, 113)); // Medium Sea Green
         addButton.setForeground(Color.WHITE);
         addButton.setFocusPainted(false);
         addButton.setFont(new Font("Arial", Font.BOLD, 13));
@@ -107,13 +118,14 @@ public class AkhilaMenu extends JFrame {
         taskArea = new JTextArea();
         taskArea.setEditable(false);
         taskArea.setFont(new Font("Consolas", Font.PLAIN, 14));
-        taskArea.setBackground(new Color(250, 250, 250));
-        taskArea.setForeground(new Color(30, 30, 60));
+        taskArea.setBackground(new Color(255, 250, 240)); // Floral White
+        taskArea.setForeground(new Color(75, 0, 130));   // Indigo
+        taskArea.setBorder(BorderFactory.createLineBorder(new Color(100, 149, 237), 2)); // Cornflower Blue
         JScrollPane scrollPane = new JScrollPane(taskArea);
 
         // --- Bottom Panel (Delete task) ---
         JPanel bottomPanel = new JPanel(new FlowLayout());
-        bottomPanel.setBackground(new Color(200, 220, 255));
+        bottomPanel.setBackground(new Color(230, 230, 250)); // Lavender
 
         JLabel lblDelete = new JLabel("Task to Delete:");
         lblDelete.setFont(new Font("Arial", Font.BOLD, 14));
@@ -121,7 +133,7 @@ public class AkhilaMenu extends JFrame {
         deleteField = new JTextField(12);
 
         JButton deleteButton = new JButton("🗑 Delete Task");
-        deleteButton.setBackground(new Color(220, 20, 60));
+        deleteButton.setBackground(new Color(220, 20, 60)); // Crimson
         deleteButton.setForeground(Color.WHITE);
         deleteButton.setFocusPainted(false);
         deleteButton.setFont(new Font("Arial", Font.BOLD, 13));
@@ -177,9 +189,10 @@ public class AkhilaMenu extends JFrame {
     // ✅ Correct main method
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
-            new AkhilaMenu().setVisible(true);
+            new Akhila().setVisible(true);
         });
     }
 }
+
 
 
